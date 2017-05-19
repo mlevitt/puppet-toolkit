@@ -31,3 +31,10 @@ task :shellcheck do
   system('shellcheck puppet-agent-installer.sh')
   raise 'Violations found using ShellCheck' unless $CHILD_STATUS.success?
 end
+
+desc 'Validate PowerShell installer'
+task :powershellcheck do
+  system('powershell -Command "Invoke-ScriptAnalyzer -Path puppet-agent-installer.ps1"')
+  raise 'Violations found using ShellCheck' unless $CHILD_STATUS.success?
+end
+
